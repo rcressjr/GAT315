@@ -17,7 +17,7 @@ public class BodyCreator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Vector3 position = Simulator.Instance.GetScreenToWorldPosition(Input.mousePosition);
             
-            Body body = Instantiate(bodyPrefab, position, Quaternion.identity); //Quaternion identity means no rotation
+            Body body = Instantiate(bodyPrefab, position, Quaternion.identity); //Quaternion identity here means no rotation
             body.ApplyForce(Random.insideUnitCircle.normalized);
 
             Simulator.Instance.bodies.Add(body);
