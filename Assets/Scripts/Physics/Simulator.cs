@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Simulator : Singleton<Simulator>
 {
-	public List<Body> bodies = new List<Body>();
+	public List<Force> forces;
+
+	public List<Body> bodies { get; set; } = new List<Body>();
 	Camera activeCamera;
 
 	private void Start()
@@ -14,10 +16,20 @@ public class Simulator : Singleton<Simulator>
 
     private void Update()
     {
-        foreach (var body in bodies)
+		forces.ForEach(force => force.ApplyForce(bodies));
+
+        bodies.ForEach(body =>
+		{
+			Integrator.SemiImplicitEuler(body, Time.deltaTime);
+		}); //using linq
+
+		bodies.ForEach(body => body.acceleration = Vector2.zero);
+
+
+        /*foreach (var body in bodies) // "old school"
         {
 			Integrator.SemiImplicitEuler(body, Time.deltaTime);
-        }
+        }*/
     }
 
     public Vector3 GetScreenToWorldPosition(Vector2 screen)

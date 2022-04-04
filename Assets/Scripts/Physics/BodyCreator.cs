@@ -6,19 +6,24 @@ using UnityEngine.EventSystems;
 public class BodyCreator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     [SerializeField] Body bodyPrefab;
+    [SerializeField] FloatData speed;
+    [SerializeField] FloatData size;
 
 	bool action = false;
 	bool pressed = false;
-	float timer = 0;
 
     void Update()
     {
-        if (action)
+        if (action && (pressed || Input.GetKey(KeyCode.LeftControl)))
         {
+            pressed = false;
+
             Vector3 position = Simulator.Instance.GetScreenToWorldPosition(Input.mousePosition);
             
             Body body = Instantiate(bodyPrefab, position, Quaternion.identity); //Quaternion identity here means no rotation
-            body.ApplyForce(Random.insideUnitCircle.normalized);
+            body.shape.size = size.value;
+            
+            body.ApplyForce(Random.insideUnitCircle.normalized * speed.value, Body.eForceMode.Velocity);
 
             Simulator.Instance.bodies.Add(body);
         }
