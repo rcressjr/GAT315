@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Simulator : Singleton<Simulator>
 {
+	[SerializeField] IntData fixedFPS;
+	[SerializeField] StringData fps;
 	[SerializeField] List<Force> forces;
 
 	public List<Body> bodies { get; set; } = new List<Body>();
+	public float fixedDeltaTime => 1.0f / fixedFPS.value;
+
 	Camera activeCamera;
+
+	float timeAccumulator = 0;
 
 	private void Start()
 	{
@@ -16,20 +22,18 @@ public class Simulator : Singleton<Simulator>
 
     private void Update()
     {
+		fps.value = (1.0f / Time.deltaTime).ToString("F2");
+
+		timeAccumulator += Time.deltaTime;
+
 		forces.ForEach(force => force.ApplyForce(bodies));
 
-        bodies.ForEach(body =>
+		while (timeAccumulator >= fixedDeltaTime)
 		{
-			Integrator.SemiImplicitEuler(body, Time.deltaTime);
-		}); //using linq
-
+			bodies.ForEach(body => Integrator.SemiImplicitEuler(body, fixedDeltaTime));
+			timeAccumulator += fixedDeltaTime;
+		}
 		bodies.ForEach(body => body.acceleration = Vector2.zero);
-
-
-        /*foreach (var body in bodies) // "old school"
-        {
-			Integrator.SemiImplicitEuler(body, Time.deltaTime);
-        }*/
     }
 
     public Vector3 GetScreenToWorldPosition(Vector2 screen)
