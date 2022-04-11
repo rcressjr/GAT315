@@ -31,7 +31,7 @@ public class Simulator : Singleton<Simulator>
 		while (timeAccumulator >= fixedDeltaTime)
 		{
 			bodies.ForEach(body => Integrator.SemiImplicitEuler(body, fixedDeltaTime));
-			timeAccumulator += fixedDeltaTime;
+			timeAccumulator -= fixedDeltaTime;
 		}
 		bodies.ForEach(body => body.acceleration = Vector2.zero);
     }
