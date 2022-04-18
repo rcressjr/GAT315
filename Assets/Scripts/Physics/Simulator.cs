@@ -33,6 +33,7 @@ public class Simulator : Singleton<Simulator>
 			bodies.ForEach(body => body.shape.color = Color.black);
 			Collision.CreateContacts(bodies, out var contacts);
 			contacts.ForEach(contact => { contact.bodyA.shape.color = Color.red; contact.bodyB.shape.color = Color.blue; });
+			Collision.SeparateContacts(contacts);
 
 			bodies.ForEach(body => Integrator.SemiImplicitEuler(body, fixedDeltaTime));
 			timeAccumulator -= fixedDeltaTime;
