@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 563012438}
-  - component: {fileID: 563012439}
   - component: {fileID: 563012437}
+  - component: {fileID: 563012439}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 563012436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b910ca95ab921429b140d8773f7f66, type: 3}
+  m_Script: {fileID: 11500000, guid: 20219ebcf3cd65c479bc674e4f39bfd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &803752318
@@ -258,15 +258,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 803752318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e764d3ae314a8743a9c72dba4980415, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cc193a05d1728b4484f70e6a44eb007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentPrefab: {fileID: 5206300969448238371, guid: 42ef2b0cfa4672f4daf93bc6a6de14e2, type: 3}
+  segmentPrefab: {fileID: 3556797361530444331, guid: 42ef2b0cfa4672f4daf93bc6a6de14e2, type: 3}
   segmentCount: 5
   size: 1
   length: 1
   targetTransform: {fileID: 563012438}
-  anchor: {fileID: 0}
+  anchor: {fileID: 803752319}
 --- !u!1 &1892108102
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,10 +376,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125427766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681bb0cb49cd0c247b1871f5fe1748cb, type: 3}
+  m_Script: {fileID: 11500000, guid: f7204b400f575d947b1869fe47c8b1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentPrefab: {fileID: 8892528031291083527, guid: b98e6058af19b1e458c9c5366a52120d, type: 3}
+  segmentPrefab: {fileID: 4467487971281402146, guid: b98e6058af19b1e458c9c5366a52120d, type: 3}
   segmentCount: 5
   size: 1
   length: 1
